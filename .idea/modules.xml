@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/LoadingOverlay.iml" filepath="$PROJECT_DIR$/LoadingOverlay.iml" group="LoadingOverlay" />
+      <module fileurl="file://$PROJECT_DIR$/loadingoverlay/loadingoverlay.iml" filepath="$PROJECT_DIR$/loadingoverlay/loadingoverlay.iml" group="LoadingOverlay/loadingoverlay" />
+      <module fileurl="file://$PROJECT_DIR$/loadingoverlay-sample/loadingoverlay-sample.iml" filepath="$PROJECT_DIR$/loadingoverlay-sample/loadingoverlay-sample.iml" group="LoadingOverlay/loadingoverlay-sample" />
+    </modules>
+  </component>
+</project>

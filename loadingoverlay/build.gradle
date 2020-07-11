@@ -1,0 +1,47 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 16
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = 1.8
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.airbnb.android:lottie:3.4.0'
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+    }
+    ext {
+        libraryVersion = '1.0.0'
+        libraryName = 'loadingoverlay'
+        publishedGroupId = 'com.mohamedabulgasem'
+        libraryDescription = 'A tiny configurable loading overlay library for Android.'
+        siteUrl = 'https://github.com/MohamedAbulgasem/LoadingOverlay'
+        gitUrl = 'https://github.com/MohamedAbulgasem/LoadingOverlay.git'
+    }
+}
+
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
