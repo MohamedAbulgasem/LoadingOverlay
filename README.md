@@ -96,7 +96,7 @@ LoadingOverlay.with(
 
 ##### Change Default Dimensions
 
-Use can use the `withDimens` function to change the default dimensions
+You can use the `withDimens` function to change the default dimensions
 (width and height) of the builtin `LoadingAnimation` view.
 
 For example, LOADING_SPINNER default dimens value is `70dp`, we can
@@ -134,7 +134,7 @@ LoadingOverlay.with(
 // Insert GIF here
 
 > LoadingOverlay uses `LoadingAnimation.PROGRESS_BAR` (Regular OS
-> `ProgressBar` widget) by default, in case no `LoadingAnimation` is
+> `ProgressBar` widget) by default - in case no `LoadingAnimation` is
 > passed through the factory function.
 
 > You can browse [lottiefiles.com](https://lottiefiles.com) for hundreds
