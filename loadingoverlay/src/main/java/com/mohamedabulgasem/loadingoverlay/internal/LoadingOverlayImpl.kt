@@ -27,16 +27,22 @@ internal class LoadingOverlayImpl(
         )
     }
 
-    override fun show() =
+    override fun show() = overlayDialog.show()
+
+    override fun showFor(
+        period: Long,
+        unit: TimeUnit,
+        action: (() -> Unit)?
+    ) {
         overlayDialog.show()
+        runAfter(period, unit) {
+            dismiss()
+            action?.invoke()
+        }
+    }
 
-    override fun showFor(period: Long, unit: TimeUnit) =
-        overlayDialog.show().run { runAfter(period, unit) { dismiss() } }
+    override fun dismiss() = overlayDialog.dismiss()
 
-    override fun dismiss() =
-        overlayDialog.dismiss()
-
-    override fun isShowing() =
-        overlayDialog.isShowing
+    override fun isShowing() = overlayDialog.isShowing
 
 }

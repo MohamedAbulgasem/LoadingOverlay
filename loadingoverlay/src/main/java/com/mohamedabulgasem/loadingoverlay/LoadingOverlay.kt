@@ -5,17 +5,25 @@ import androidx.annotation.*
 import java.util.concurrent.*
 import java.util.concurrent.TimeUnit.*
 import com.mohamedabulgasem.loadingoverlay.internal.*
+import com.mohamedabulgasem.loadingoverlay.LoadingAnimation.BuiltinAnimations.PROGRESS_BAR
 
 interface LoadingOverlay {
 
     /** Display the loading overlay on screen. */
     fun show()
 
-    /** Display the loading overlay on screen for the set period. */
+    /**
+     * Display the loading overlay on screen for the set period.
+     *
+     * @param period the amount of time to show the loading overlay for.
+     * @param unit the time unit of the given period, default is milliseconds.
+     * @param action function to be invoked after the set period.
+     */
     fun showFor(
         period: Long,
-        unit: TimeUnit = MILLISECONDS
-    ): Boolean
+        unit: TimeUnit = MILLISECONDS,
+        action: (() -> Unit)? = null
+    )
 
     /** Dismiss/remove the loading overlay from screen. */
     fun dismiss()
@@ -36,7 +44,7 @@ interface LoadingOverlay {
          */
         fun with(
             context: Activity,
-            animation: LoadingAnimation,
+            animation: LoadingAnimation = PROGRESS_BAR,
             dimAmount: Float = 0.5f,
             isCancellable: Boolean = false,
             onShowListener: (() -> Unit)? = null,
@@ -61,15 +69,14 @@ interface LoadingOverlay {
  * @param dimens the width and height of the loading animation view, specified in dp.
  */
 data class LoadingAnimation(
-    @RawRes val rawRes: Int,
+    @RawRes val rawRes: Int = 0,
     var dimens: Int
 ) {
 
     companion object BuiltinAnimations {
+        val PROGRESS_BAR = LoadingAnimation(dimens = 70)
         val LOADING_SPINNER = LoadingAnimation(R.raw.lo_loading_spinner, 70)
-        val PROGRESS_BAR = LoadingAnimation(R.raw.lo_progress_bar, 300)
-        val FADING_BALLS = LoadingAnimation(R.raw.lo_fading_balls, 300)
-        val JUMPING_BALLS = LoadingAnimation(R.raw.lo_jumping_balls, 150)
+        val FADING_PROGRESS = LoadingAnimation(R.raw.lo_fading_progress, 300)
     }
 
     fun withDimens(dimens: Int): LoadingAnimation = apply {

@@ -8,10 +8,10 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/first_screen"
+        android:id="@+id/second_screen_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/first_screen">
+        android:src="@drawable/second_screen">
 
     </ImageView>
 

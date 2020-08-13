@@ -22,7 +22,7 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.airbnb.android:lottie:3.4.0'
 }
 
@@ -35,10 +35,10 @@ buildscript {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
     }
     ext {
-        libraryVersion = '1.0.0'
+        libraryVersion = '0.0.1'
         libraryName = 'loadingoverlay'
         publishedGroupId = 'com.mohamedabulgasem'
-        libraryDescription = 'A tiny configurable loading overlay library for Android.'
+        libraryDescription = 'A customisable loading overlay for Android.'
         siteUrl = 'https://github.com/MohamedAbulgasem/LoadingOverlay'
         gitUrl = 'https://github.com/MohamedAbulgasem/LoadingOverlay.git'
     }
