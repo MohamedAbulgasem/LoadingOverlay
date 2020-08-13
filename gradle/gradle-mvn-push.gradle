@@ -62,9 +62,9 @@ bintray {
         issueTrackerUrl = 'https://github.com/MohamedAbulgasem/LoadingOverlay/issues'
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
-        dryRun = false
-        override = false
         publicDownloadNumbers = true
+        githubRepo = 'MohamedAbulgasem/LoadingOverlay'
+        githubReleaseNotesFile = 'README.md'
         version {
             desc = libraryDescription
         }
