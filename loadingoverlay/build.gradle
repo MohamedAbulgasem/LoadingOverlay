@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 29
@@ -35,7 +37,7 @@ buildscript {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
     }
     ext {
-        libraryVersion = '0.0.1'
+        libraryVersion = '0.0.2'
         libraryName = 'loadingoverlay'
         publishedGroupId = 'com.mohamedabulgasem'
         libraryDescription = 'A customisable loading overlay for Android.'
@@ -44,4 +46,70 @@ buildscript {
     }
 }
 
-apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+group = publishedGroupId
+version = libraryVersion
+
+install {
+    repositories.mavenInstaller.pom.project {
+        name libraryName
+        description libraryDescription
+        packaging 'aar'
+        url siteUrl
+        groupId publishedGroupId
+        artifactId libraryName
+
+        licenses {
+            license {
+                name 'The Apache Software License, Version 2.0'
+                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+            }
+        }
+        developers {
+            developer {
+                id 'mohamedabulgasem'
+                name 'Mohamed Abulgasem'
+                email 'algiriany93@gmail.com'
+            }
+        }
+        scm {
+            url siteUrl
+            connection gitUrl
+            developerConnection gitUrl
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+// Configure gradle-bintray-plugin (for publishing releases)
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    publish = true
+
+    pkg {
+        repo = 'maven'
+        name = libraryName
+        desc = libraryDescription
+        websiteUrl = siteUrl
+        issueTrackerUrl = 'https://github.com/MohamedAbulgasem/LoadingOverlay/issues'
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publicDownloadNumbers = true
+        version {
+            desc = libraryDescription
+        }
+    }
+}
