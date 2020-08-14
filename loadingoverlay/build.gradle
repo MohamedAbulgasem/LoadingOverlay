@@ -37,7 +37,7 @@ buildscript {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
     }
     ext {
-        libraryVersion = '0.0.2'
+        libraryVersion = '0.0.3'
         libraryName = 'loadingoverlay'
         publishedGroupId = 'com.mohamedabulgasem'
         libraryDescription = 'A customisable loading overlay for Android.'

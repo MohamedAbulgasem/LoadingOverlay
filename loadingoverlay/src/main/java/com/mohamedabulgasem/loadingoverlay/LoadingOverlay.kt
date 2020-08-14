@@ -17,7 +17,7 @@ interface LoadingOverlay {
      *
      * @param period the amount of time to show the loading overlay for.
      * @param unit the time unit of the given period, default is milliseconds.
-     * @param action function to be invoked after the set period.
+     * @param action function to be invoked after the set period has passed.
      */
     fun showFor(
         period: Long,

@@ -16,9 +16,9 @@
 
 ## Introduction
 
-A customisable loading overlay that works with [Lottie Animations](https://lottiefiles.com/loading).
+A customisable loading overlay that supports [Lottie Animations](https://lottiefiles.com/loading).
 
-// 3 GIFs here
+![](static/progress_bar_recording.gif)  ![](static/loading_spinner_recording.gif)  ![](static/fading_progress_recording.gif)
 
 ## Requirements
 
@@ -39,7 +39,7 @@ dependencies {
 ## Usage
 
 Use LoadingOverlay `with` factory function to construct your instance and then
-you can show and dismiss it as you do your loading work:
+you can show and dismiss the loading overlay as you do your loading work:
 
 ```kotlin
 private val loadingOverlay: LoadingOverlay by lazy {
@@ -58,8 +58,6 @@ fun onCreateNewAccountButtonClicked() {
 
 ## Customisation
 
-Customisation options:
-
 ### Set Loading Animation
 
 Either use one of the builtin `LoadingAnimation`s or set your own
@@ -69,7 +67,7 @@ from a lottie animation file:
 
 Use one of the 3 available builtin `LoadingAnimation`s:
 
-- PROGRESS_BAR
+- Progress Bar
 ```kotlin
 LoadingOverlay.with(
     context = this,
@@ -77,7 +75,7 @@ LoadingOverlay.with(
 )
 ```
 
-- LOADING_SPINNER
+- Loading Spinner
 ```kotlin
 LoadingOverlay.with(
     context = this,
@@ -85,7 +83,7 @@ LoadingOverlay.with(
 )
 ```
 
-- FADING_PROGRESS
+- Fading Progress
 ```kotlin
 LoadingOverlay.with(
     context = this,
@@ -103,7 +101,7 @@ LoadingOverlay.with(
 )
 ```
 
-// Insert GIF here
+![](static/loading_spinner_100dp_recording.gif)
 
 #### Use a Lottie Animation File
 
@@ -112,7 +110,7 @@ Store a lottie animation file (json or zip) in your `raw` directory.
 ![](static/raw_directory_screenshot.png)
 
 Construct a `LoadingAnimation` instance with your lottie animation file
-and set its dimensions (width and height) specified in dp.
+and set its dimensions (width and height), specified in dp.
 
 ```kotlin
 LoadingOverlay.with(
@@ -124,7 +122,7 @@ LoadingOverlay.with(
 )
 ```
 
-// Insert GIF here
+![](static/loading_paperplane_recording.gif)
 
 > LoadingOverlay uses `LoadingAnimation.PROGRESS_BAR` (Regular OS
 > `ProgressBar` widget) by default - in case no `LoadingAnimation` is
@@ -139,51 +137,60 @@ LoadingOverlay.with(
 
 ### Set Dim Amount
 
-Set the amount of background dim - from 0.0 for no dim to 1.0 for full dim:
+Set the amount of background dim between `0.0f` for no dim to `1.0f` for full dim:
 
 ```kotlin
 LoadingOverlay.with(
     context = this,
-    dimAmount = 0.3f
+    dimAmount = 0.2f
 )
 ```
 
-// Insert GIF here
+![](static/progress_bar_dim_0_2_recording.gif)
 
 ```kotlin
 LoadingOverlay.with(
     context = this,
-    dimAmount = 0.7f
+    dimAmount = 0.8f
 )
 ```
 
-// Insert GIF here
+![](static/progress_bar_dim_0_8_recording.gif)
 
 > Default dim amount is `0.5f`
 
 ### Other Configuration Options
 
 ```kotlin
-LoadingOverlay.with(
+val loadingOverlay = LoadingOverlay.with(
     context = this,
-    
-    // Specify whether the overlay is cancelable on 
+
+    // Specify whether the overlay is cancelable on
     // back presses or screen touches, default is false.
     isCancellable = true,
-    
+
     onShowListener = {
         // Optionally run some code when the overlay is shown.
     },
-    
+
     onCancelListener = {
-        // Optionally run some code if isCancellable 
+        // Optionally run some code if isCancellable
         // is set to true and the overlay is cancelled.
     },
-    
+
     onDismissListener = {
         // Optionally run some code when the overlay is dismissed.
     }
 )
+
+// ...
+
+// You can use the showFor function to only display the
+// loading overlay for the specified period of time.
+loadingOverlay.showFor(5, TimeUnit.SECONDS) {
+    // Optionally run some code after the set period has
+    // passed and the loading overlay has been dismissed.
+}
 ```
 
 ## License

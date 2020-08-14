@@ -23,18 +23,11 @@ internal class LoadingOverlayDialog(
 ) : Dialog(context) {
 
     init {
-        val animationView: LottieAnimationView? = when (rawRes) {
-            0 -> null
-            else -> LottieAnimationView(context)
-                .apply {
-                    setAnimation(rawRes)
-                    repeatCount = INFINITE
-                }
-        }
+        val lottieAnimationView = loadLottieAnimationView(rawRes)
         setBackground(dimAmount)
         setCancelable(isCancellable)
         setListeners(
-            animationView,
+            lottieAnimationView,
             onShowListener,
             onCancelListener,
             onDismissListener
@@ -42,8 +35,19 @@ internal class LoadingOverlayDialog(
         setContentView(
             context,
             dimensDp,
-            animationView
+            lottieAnimationView
         )
+    }
+
+    private fun loadLottieAnimationView(
+        @RawRes rawRes: Int
+    ): LottieAnimationView? = when (rawRes) {
+        0 -> null
+        else -> LottieAnimationView(context)
+            .apply {
+                setAnimation(rawRes)
+                repeatCount = INFINITE
+            }
     }
 
     private fun setBackground(dimAmount: Float) {
@@ -55,20 +59,20 @@ internal class LoadingOverlayDialog(
     }
 
     private fun setListeners(
-        animationView: LottieAnimationView?,
+        lottieAnimationView: LottieAnimationView?,
         onShowListener: (() -> Unit)?,
         onCancelListener: (() -> Unit)?,
         onDismissListener: (() -> Unit)?
     ) {
         setOnShowListener {
-            animationView?.playAnimation()
+            lottieAnimationView?.playAnimation()
             onShowListener?.invoke()
         }
         setOnCancelListener {
             onCancelListener?.invoke()
         }
         setOnDismissListener {
-            animationView?.cancelAnimation()
+            lottieAnimationView?.cancelAnimation()
             onDismissListener?.invoke()
         }
     }
@@ -76,11 +80,11 @@ internal class LoadingOverlayDialog(
     private fun setContentView(
         context: Context,
         dimensDp: Int,
-        animationView: LottieAnimationView?
+        lottieAnimationView: LottieAnimationView?
     ) {
         val rootView = FrameLayout(context).apply {
             val dimenPxs = context.dpToPixel(dimensDp)
-            val loadingView = animationView ?: ProgressBar(context)
+            val loadingView = lottieAnimationView ?: ProgressBar(context)
             addView(loadingView, dimenPxs, dimenPxs)
         }
         setContentView(rootView)
