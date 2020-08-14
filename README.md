@@ -67,7 +67,7 @@ from a lottie animation file:
 
 Use one of the 3 available builtin `LoadingAnimation`s:
 
-- Progress Bar
+- Progress Bar:
 ```kotlin
 LoadingOverlay.with(
     context = this,
@@ -75,7 +75,7 @@ LoadingOverlay.with(
 )
 ```
 
-- Loading Spinner
+- Loading Spinner:
 ```kotlin
 LoadingOverlay.with(
     context = this,
@@ -83,7 +83,7 @@ LoadingOverlay.with(
 )
 ```
 
-- Fading Progress
+- Fading Progress:
 ```kotlin
 LoadingOverlay.with(
     context = this,
@@ -102,6 +102,10 @@ LoadingOverlay.with(
 ```
 
 ![](static/loading_spinner_100dp_recording.gif)
+
+> LoadingOverlay uses `LoadingAnimation.PROGRESS_BAR` (Regular OS
+> `ProgressBar` widget) by default - in case no `LoadingAnimation` is
+> specified through the factory function.
 
 #### Use a Lottie Animation File
 
@@ -123,10 +127,6 @@ LoadingOverlay.with(
 ```
 
 ![](static/loading_paperplane_recording.gif)
-
-> LoadingOverlay uses `LoadingAnimation.PROGRESS_BAR` (Regular OS
-> `ProgressBar` widget) by default - in case no `LoadingAnimation` is
-> specified through the factory function.
 
 > You can browse [lottiefiles.com](https://lottiefiles.com/loading) for hundreds
 > of lottie loading animations from which you can download and use
@@ -185,11 +185,10 @@ val loadingOverlay = LoadingOverlay.with(
 
 // ...
 
-// You can use the showFor function to only display the
-// loading overlay for the specified period of time.
+// You can use the showFor function to display the
+// loading overlay for a specific period of time.
 loadingOverlay.showFor(5, TimeUnit.SECONDS) {
-    // Optionally run some code after the set period has
-    // passed and the loading overlay has been dismissed.
+    // Optionally run some code after the set period has passed.
 }
 ```
 
