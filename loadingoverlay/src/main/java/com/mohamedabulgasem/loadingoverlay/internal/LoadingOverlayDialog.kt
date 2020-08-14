@@ -64,7 +64,9 @@ internal class LoadingOverlayDialog(
             animationView?.playAnimation()
             onShowListener?.invoke()
         }
-        setOnCancelListener { onCancelListener?.invoke() }
+        setOnCancelListener {
+            onCancelListener?.invoke()
+        }
         setOnDismissListener {
             animationView?.cancelAnimation()
             onDismissListener?.invoke()

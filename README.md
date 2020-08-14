@@ -1,5 +1,5 @@
 # LoadingOverlay
-[![Download](https://api.bintray.com/packages/mohamedabulgasem/maven/loadingoverlay/images/download.svg?version=0.0.1)](https://bintray.com/mohamedabulgasem/maven/loadingoverlay/0.0.1/link)
+[![Download](https://api.bintray.com/packages/mohamedabulgasem/maven/loadingoverlay/images/download.svg)](https://bintray.com/mohamedabulgasem/maven/loadingoverlay/_latestVersion)
 
   - [Introduction](#introduction)
   - [Requirements](#requirements)
@@ -7,17 +7,16 @@
     - [Declaring Dependency](#declaring-dependency)
   - [Usage](#usage)
   - [Customisation](#customisation)
-    - [Set `LoadingAnimation`](#set-loadinganimation)
-      - [Builtin `LoadingAnimation` Views](#builtin-loadinganimation-views)
-        - [Change Default Dimensions](#change-default-dimensions)
+    - [Set Loading Animation](#set-loading-animation)
+      - [Builtin Loading Animations](#builtin-loading-animations)
       - [Use a Lottie Animation File](#use-a-lottie-animation-file)
     - [Set Dim Amount](#set-dim-amount)
     - [Other Configuration Options](#other-configuration-options)
   - [License](#license)
 
 ## Introduction
-A customisable loading overlay that leverages
-[Lottie](https://github.com/airbnb/lottie-android) under the hood.
+
+A customisable loading overlay that works with [Lottie Animations](https://lottiefiles.com/loading).
 
 // 3 GIFs here
 
@@ -33,14 +32,14 @@ Add the dependency to your app or module `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation 'com.mohamedabulgasem:loadingoverlay:0.0.1'
+    implementation 'com.mohamedabulgasem:loadingoverlay:1.0.0'
 }
 ```
 
 ## Usage
 
-Use LoadingOverlay `with` factory function to construct the loading
-overlay then show and dismiss it:
+Use LoadingOverlay `with` factory function to construct your instance and then
+you can show and dismiss it as you do your loading work:
 
 ```kotlin
 private val loadingOverlay: LoadingOverlay by lazy {
@@ -61,14 +60,14 @@ fun onCreateNewAccountButtonClicked() {
 
 Customisation options:
 
-### Set `LoadingAnimation`
+### Set Loading Animation
 
-Either use one of the builtin `LoadingAnimation` views or set your own
+Either use one of the builtin `LoadingAnimation`s or set your own
 from a lottie animation file:
 
-#### Builtin `LoadingAnimation` Views
+#### Builtin Loading Animations
 
-Use one of the 3 available builtin `LoadingAnimation` views:
+Use one of the 3 available builtin `LoadingAnimation`s:
 
 - PROGRESS_BAR
 ```kotlin
@@ -94,15 +93,10 @@ LoadingOverlay.with(
 )
 ```
 
-##### Change Default Dimensions
-
-You can use the `withDimens` function to change the default dimensions
-(width and height) of the builtin `LoadingAnimation` view.
-
-For example, LOADING_SPINNER default dimens value is `70dp`, we can
-change that to `100dp`:
+> You can update the default dimensions (width and height) of builtin loading animations using the `withDimens` function.
 
 ```kotlin
+// LOADING_SPINNER default dimens value is 70dp, we can update it to 100dp.
 LoadingOverlay.with(
     context = this,
     animation = LoadingAnimation.LOADING_SPINNER.withDimens(100)
@@ -117,9 +111,8 @@ Store a lottie animation file (json or zip) in your `raw` directory.
 
 ![](static/raw_directory_screenshot.png)
 
-Construct the `LoadingAnimation` view with your lottie animation file
-and set the dimensions (width and height) of the `LoadingAnimation`
-view, specified in dp.
+Construct a `LoadingAnimation` instance with your lottie animation file
+and set its dimensions (width and height) specified in dp.
 
 ```kotlin
 LoadingOverlay.with(
@@ -135,19 +128,18 @@ LoadingOverlay.with(
 
 > LoadingOverlay uses `LoadingAnimation.PROGRESS_BAR` (Regular OS
 > `ProgressBar` widget) by default - in case no `LoadingAnimation` is
-> passed through the factory function.
+> specified through the factory function.
 
-> You can browse [lottiefiles.com](https://lottiefiles.com) for hundreds
-> of lottie loading animation files from which you can download and use
-> in your project or use your own
+> You can browse [lottiefiles.com](https://lottiefiles.com/loading) for hundreds
+> of lottie loading animations from which you can download and use
+> in your project or you can use your own
 > [Adobe After Effects](http://www.adobe.com/products/aftereffects.html)
 > animations which can be exported to json with the
 > [Bodymovin](https://github.com/airbnb/lottie-web) plugin.
 
 ### Set Dim Amount
 
-Set the amount of background dim, from 0.0 for no dim to 1.0 for full
-dim:
+Set the amount of background dim - from 0.0 for no dim to 1.0 for full dim:
 
 ```kotlin
 LoadingOverlay.with(
