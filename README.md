@@ -18,7 +18,7 @@
 
 A customisable loading overlay that supports [Lottie Animations](https://lottiefiles.com/loading).
 
-![](static/progress_bar_recording.gif)  ![](static/loading_spinner_recording.gif)  ![](static/fading_progress_recording.gif)
+![](static/progress_bar_recording.gif)  ![](static/loading_spinner_recording.gif)  ![](static/fading_progress_recording.gif)  ![](static/loading_paperplane_recording.gif)
 
 ## Requirements
 
